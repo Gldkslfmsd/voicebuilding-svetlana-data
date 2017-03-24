@@ -14,3 +14,9 @@ download:
 	#wget https://github.com/Gldkslfmsd/voicebuilding-svetlana-voice/releases/download/voice-data/voice.zip -O voice.zip
 	unzip voice.zip
 	rm -rf voice.zip
+
+f=single_utt
+
+split_to_utt:
+	./split_to_utt.sh
+
