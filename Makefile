@@ -8,6 +8,11 @@ merge:
 zip:
 	zip voice.zip group*.flac 
 
+normalize:
+	sox group5_mic1.flac -r 16000 tmp.flac
+	sox -v 3.0 tmp.flac mic1_norm.flac
+	rm tmp.flac
+
 download:
 	# download this file manually via browser, it's in a private repository
 	# so wget can't see it now.
@@ -20,3 +25,7 @@ f=single_utt
 split_to_utt:
 	./split_to_utt.sh
 
+
+
+zip_single:
+	zip single_utt.zip single_utt/*

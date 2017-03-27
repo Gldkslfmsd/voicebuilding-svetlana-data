@@ -1,18 +1,19 @@
 #!/bin/bash
 
 DIR=single_utt
-AUDIO=mic12.flac
-TSV=utt.tsv
+AUDIO=group5_mic1.flac
+TSV=utterances.tsv
 
-praat tg2tsv.praat
+#praat tg2tsv.praat
 mkdir -p $DIR
-cat $TSV | {
+cat $TSV | sed 's/\t/@/g' | {
 	read _  # extract header
-	i=0
-	while read tmin text tmax; do
-		echo "processing: $tmin $text $tmax"
-		# TODO: remove $i
-		sox $AUDIO $DIR/$text""$i.wav trim $tmin =$tmax rate 16000
-		i=$(($i+1))
+	while read line; do
+		tmin=`echo $line | sed 's/@.*//'`
+		tmax=`echo $line | sed 's/[^@]*@[^@]*@//'`
+		code=`echo $line | sed -r 's/^[^@]*@([^ ]*) .*$/\1/'`
+
+		echo "processing: $tmin $tmax $code"
+		sox $AUDIO $DIR/$code"".wav trim $tmin =$tmax rate 16000
 	done
 }
