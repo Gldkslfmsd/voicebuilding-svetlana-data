@@ -1,5 +1,7 @@
 # Fixing schwa
 
+G2P tool:
+
 http://clarin.phonetik.uni-muenchen.de/BASWebServices/#/services/Grapheme2Phoneme
 
 
@@ -20,4 +22,4 @@ cd us
 make merge
 ```
 
-`fixed_text_grids` -- created by WebMAUS from merged par files and audio
+`fixed_text_grids/` -- TextGrids created by WebMAUS from merged par files and audio
